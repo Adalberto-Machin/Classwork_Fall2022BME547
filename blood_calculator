@@ -1,15 +1,15 @@
-from statistics import NormalDist
-
-
 def interface():
     print("My Program")
     print("Options:")
     print("9 - Quit")
+    print("1 - Start Program")
     keep_running = True
     while keep_running:
         choice = input("Enter your choice: ")
         if choice=='9':
             return
+        elif choice=='1':
+            HDL_driver()
 
 
 
@@ -23,10 +23,18 @@ def check_HDL(HDL_number):
     if HDL_number>=60:
         return "Normal"
     elif HDL_number>=40 and HDL_number<60:
-        return "Borderline Low'"
+        return "Borderline Low"
     else:
         return "Low"
 
+
+def HDL_driver():
+    HDL_number = input_HDL()
+    answer = check_HDL(HDL_number)
+    output_HDL_result(HDL_number,charac=answer)
+
+def output_HDL_result(HDL_number,charac):
+    print(f"The results for an HDL value of {HDL_number} and {charac}")
+
+
 interface()
-HDL_number = input_HDL()
-check_HDL(HDL_number)
