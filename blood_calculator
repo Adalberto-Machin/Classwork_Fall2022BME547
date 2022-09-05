@@ -1,3 +1,6 @@
+from statistics import NormalDist
+
+
 def interface():
     print("My Program")
     print("Options:")
@@ -14,6 +17,16 @@ def input_HDL():
     HDL_input = input('Enter HDL value:')
     return int(HDL_input)
 
-interface()
 
-input_HDL()
+
+def check_HDL(HDL_number):
+    if HDL_number>=60:
+        return "Normal"
+    elif HDL_number>=40 and HDL_number<60:
+        return "Borderline Low'"
+    else:
+        return "Low"
+
+interface()
+HDL_number = input_HDL()
+check_HDL(HDL_number)
