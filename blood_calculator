@@ -17,7 +17,8 @@ def interface():
 def inputfunction():
     HDL_input = input('Enter HDL value:')
     LDL_input = input('Enter LDL value:')
-    return int(HDL_input), int(LDL_input)
+    TC_input = input('Enter Total Cholesterol(TC) value:')
+    return int(HDL_input), int(LDL_input), int(TC_input)
 
 
 
@@ -41,20 +42,29 @@ def checkLDL(LDL_number):
     else:
         return "Very High"
     
+def check_TC(TC_number):
+
+    if TC_number<200:
+        return 'Normal'
+    elif 200<=TC_number<=239:
+        return ' Borderline High'
+    else:
+        return 'High'
    
 
 
 def driver():
-    (HDL_number,LDL_number) = inputfunction()
+    (HDL_number,LDL_number,TC_number) = inputfunction()
     answerHDL = check(HDL_number)
-    #print(answerHDL)
     answerLDL = checkLDL(LDL_number)
-    #print(answerLDL)
-    output_result(HDL_number,answerHDL,LDL_number,answerLDL)
+    answerTC = check_TC(TC_number)
+    output_result(HDL_number,answerHDL,LDL_number,answerLDL,TC_number,answerTC)
 
-def output_result(HDL_number,answerHDL,LDL_number,answerLDL):
+def output_result(HDL_number,answerHDL,LDL_number,answerLDL,TC_number,answerTC):
     print(f"The results for an HDL value of {HDL_number} are {answerHDL}")
     print(f"The results for an LDL value of {LDL_number} are {answerLDL}")
+    print(f"The results for an LDL value of {TC_number} are {answerTC}")
+  
   
 
 
