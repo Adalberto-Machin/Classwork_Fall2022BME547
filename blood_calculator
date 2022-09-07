@@ -1,25 +1,29 @@
 def interface():
     print("My Program")
     print("Options:")
-    print("9 - Quit")
-    print("1 - Start Program")
     keep_running = True
     while keep_running:
+        print("9 - Quit")
+        print("1 - Start Program")
         choice = input("Enter your choice: ")
         if choice=='9':
             return
         elif choice=='1':
-            HDL_driver()
+            driver()
+       
 
 
 
-def input_HDL():
+def inputfunction():
     HDL_input = input('Enter HDL value:')
-    return int(HDL_input)
+    LDL_input = input('Enter LDL value:')
+    return int(HDL_input), int(LDL_input)
 
 
 
-def check_HDL(HDL_number):
+
+
+def check(HDL_number):
     if HDL_number>=60:
         return "Normal"
     elif HDL_number>=40 and HDL_number<60:
@@ -27,14 +31,33 @@ def check_HDL(HDL_number):
     else:
         return "Low"
 
+def checkLDL(LDL_number):
+    if LDL_number<130:
+        return "Normal"
+    elif LDL_number>=130 and LDL_number<159:
+        return "Borderline High"
+    elif 160<=LDL_number<=189:
+        return 'High'
+    else:
+        return "Very High"
+    
+   
 
-def HDL_driver():
-    HDL_number = input_HDL()
-    answer = check_HDL(HDL_number)
-    output_HDL_result(HDL_number,charac=answer)
 
-def output_HDL_result(HDL_number,charac):
-    print(f"The results for an HDL value of {HDL_number} and {charac}")
+def driver():
+    (HDL_number,LDL_number) = inputfunction()
+    answerHDL = check(HDL_number)
+    #print(answerHDL)
+    answerLDL = checkLDL(LDL_number)
+    #print(answerLDL)
+    output_result(HDL_number,answerHDL,LDL_number,answerLDL)
+
+def output_result(HDL_number,answerHDL,LDL_number,answerLDL):
+    print(f"The results for an HDL value of {HDL_number} are {answerHDL}")
+    print(f"The results for an LDL value of {LDL_number} are {answerLDL}")
+  
 
 
 interface()
+
+
