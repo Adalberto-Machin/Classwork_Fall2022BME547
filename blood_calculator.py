@@ -1,3 +1,4 @@
+
 print('This is the blood_calculator.py module')
 print(f"Pythin thinks this is called {__name__}")
 def interface():
@@ -12,7 +13,7 @@ def interface():
             return
         elif choice=='1':
             driver()
-       
+    
 
 
 
@@ -52,7 +53,7 @@ def check_TC(TC_number):
         return ' Borderline High'
     else:
         return 'High'
-   
+
 
 
 def driver():
@@ -66,10 +67,9 @@ def output_result(HDL_number,answerHDL,LDL_number,answerLDL,TC_number,answerTC):
     print(f"The results for an HDL value of {HDL_number} are {answerHDL}")
     print(f"The results for an LDL value of {LDL_number} are {answerLDL}")
     print(f"The results for an LDL value of {TC_number} are {answerTC}")
-  
-  
+
+
 
 if __name__=="__main__":
     interface()
-
 
