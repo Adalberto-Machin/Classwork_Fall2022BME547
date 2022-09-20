@@ -1,7 +1,6 @@
-
 print('This is the blood_calculator.py module')
 print(f"Pythin thinks this is called {__name__}")
-def interface():
+def interface():  
     print("My Program")
     print("Options:")
     keep_running = True
@@ -50,7 +49,7 @@ def check_TC(TC_number):
     if TC_number<200:
         return 'Normal'
     elif 200<=TC_number<=239:
-        return ' Borderline High'
+        return 'Borderline High'
     else:
         return 'High'
 
