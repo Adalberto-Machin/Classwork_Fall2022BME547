@@ -13,7 +13,7 @@ def parse_weight_input(weight_input):
     weight, units = weight_input.split(' ')
     weight = float(weight)
     units = units.lower()
-    if units in ["lb","pound"]:
+    if units in ["lb", "pound"]:
         weight_kg = convert_lb_to_kg(weight)
     else:
         weight_kg = weight
@@ -26,8 +26,10 @@ def convert_lb_to_kg(weight_lb):
     return weight_kg
 
 
-def add_number(a,b):
-    c = a+b 
+def add_number(a, b):
+    c = a+b
     return c
+
+
 if __name__ == "__main__":
     input_weight_entry()
