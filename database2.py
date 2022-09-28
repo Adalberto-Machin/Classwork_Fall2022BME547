@@ -1,51 +1,72 @@
-def create_patient_entry(patient_name, 
-                        patient_id,patient_age):
-    new_patient = [patient_name,patient_id,patient_age,[]]
+class Patient:
+
+    def __init__(self, first_name, last_name, patient_id, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.patient_id = patient_id
+        self.age = age
+        self.tests = []
+
+    def full_name(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
+    def adult_or_minor(self):
+        if self.age >= 18:
+            return "adult"
+        else:
+            return "minor"
+
+
+def create_patient_entry(patient_first_name,
+                         patient_last_name, patient_id,
+                         patient_age):
+    new_patient = Patient(patient_first_name, patient_last_name,
+                          patient_id, patient_age)
     return new_patient
 
 
+def print_database(db):
+    # Method one that iterates over the keys in the dictionary "db"
+    print("print_database Method #1")
+    for patient_key in db:
+        print(patient_key)
+        print("Name: {}, id: {}, age: {}".format(db[patient_key].full_name(),
+                                                 db[patient_key].patient_id,
+                                                 db[patient_key].age))
+
+    # Method two that iterates over the specific values in the dictionary "db"
+    print("print_database Method #2")
+    for patient in db.values():
+        print("Name: {}, id: {}, age: {}".format(patient.full_name(),
+                                                 patient.patient_id,
+                                                 patient.age))
+
+
+def find_patient(db, id_no):
+    patient = db[id_no]
+    return patient
+
+
+def add_test_to_patient(db, id_no, test_name, test_value):
+    patient = find_patient(db, id_no)
+    patient.tests.append((test_name, test_value))
+
+
 def main():
-    db = []
-    db.append(create_patient_entry("Ann Ables",1,30))
-    db.append(create_patient_entry("Bob Boyles",2,34))
-    db.append(create_patient_entry("Chris Chou",3,25))
-    #print(db)
-    return db
+    # database will be a dictionary where the keys are the patient_ids
+    #   and the values will be instances of the "Patient" class
+    db = {}
+    db[11] = create_patient_entry("Ann", "Ables", 11, 30)
+    db[22] = create_patient_entry("Bob", "Boyles", 22, 34)
+    db[3] = create_patient_entry("Chris", "Chou", 3, 25)
+    print_database(db)
+    add_test_to_patient(db, 3, "HDL", 100)
+    print(db[3].tests)
+    patient_to_check = db[3]
+    print("Patient {} is a {}".format(patient_to_check.full_name(),
+                                      patient_to_check.adult_or_minor()))
 
-def print_db(db):
-    for j in db:
-        print(f'Patient name is {j[0]},and patient id is: {j[1]}, and patient age is: {j[2]}')
 
-def id_match(db,id_number):
-    for j in db:
-        if j[1]==id_number:
-            print(f'The patient is {j[0]}' )
-            return j
-    return False
-
-def test_match(db,id):
-    patient = id_match(db,id)   #always reuse code you already have 
-    test_name = input('The test name is:')
-    test_value = float(input('The test value is:'))
-    patient[3].append((test_name,test_value))
-
-    return db
-            
-
-if __name__=="__main__":
-    db = main()
-    print_db(db)
-    x = id_match(db,6)
-    print(x)
-    db = test_match(db,2)
-    print(db)
-
-    room_list = ['Room1','Room 2', 'Room 3']
-    
-    for i,patient in enumerate(db):
-        print(f"Name = {patient[0]}, Room = {room_list[i]}")
-
-    for patient,room in zip(db,room_list):
-        print(f"Name = {patient[0]}, Room = {room}")
-
+if __name__ == "__main__":
+    main()
 
