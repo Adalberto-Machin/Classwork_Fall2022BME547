@@ -8,7 +8,7 @@ def server_status():
 
 
 @app.route("/info", methods =["GET"])
-def information():
+def information(): 
     x = "Machin is the beast, absolute unit"
     return x
 
