@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import time
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -37,6 +38,36 @@ def age_substract():
     my_time = datetime.min.time()
     age = datetime.combine(date, my_time) - date_object_age_origin
     return jsonify(round(age.days/365,2))
+
+
+@app.route("/until_next_meal/<meal>", methods =["GET"])
+def server_meal_time(meal):
+    time_now = datetime.now().time()
+    date = get_date()
+    origin_time_now = datetime.combine(date, time_now)
+    if meal == "breakfast":
+        # gets time till breakfast
+        origin_breakfast = datetime.combine(date,time(9, 0, 0))
+        breakfast_time_diff = origin_breakfast - origin_time_now
+        answer = breakfast_time_diff.seconds/(60*60)
+        return jsonify(round(answer,2))
+    elif meal == "lunch":
+        # gets time till lunch
+        origin_lunch = datetime.combine(date,time(12, 0, 0))
+        lunch_time_diff = origin_lunch - origin_time_now
+        answer = lunch_time_diff.seconds/(60*60)
+        return jsonify(round(answer,2))
+    elif meal == "dinner":
+        # gets time till dinner
+        origin_dinner = datetime.combine(date,time(19, 0, 0))
+        dinner_time_diff = origin_dinner - origin_time_now
+        answer = dinner_time_diff.seconds/(60*60)
+        return jsonify(round(answer,2))
+    else:
+        answer = 'no good input'
+        return jsonify(answer,2)
+
+
 
 if __name__ == "__main__":
     app.run()
