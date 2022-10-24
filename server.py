@@ -42,5 +42,11 @@ def sum_code():
     answer = sum_result
     return jsonify(answer)
 
+
+@app.route("/add_numbers_input/<a>/<b>", methods =["GET"])
+def add_numbers(a,b): 
+    answer = int(a) + int(b)
+    return jsonify(answer)
+
 if __name__ == "__main__":
     app.run()
