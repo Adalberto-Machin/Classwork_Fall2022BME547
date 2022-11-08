@@ -61,10 +61,7 @@ def init_server():
         None
     """
     logging.basicConfig(filename="server.log", filemode='w')
-    #connect("mongodb+srv://daw_nov2022:daw_nov2022@bme547.ba348.mongodb.net/"
-            #"health_db?retryWrites=true&w=majority")
     connect("mongodb+srv://machin:Myrevi20@bme547.yr5kjvq.mongodb.net/test?retryWrites=true&w=majority")
-
 
 
 @app.route("/new_patient", methods=["POST"])
